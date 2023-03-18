@@ -1,5 +1,5 @@
-import { createContext, useState, useMemo } from 'react';
-import { ThemeOptions, createTheme } from '@mui/material/styles';
+import { createContext } from 'react';
+import { ThemeOptions } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
 import OnestRegular from './assets/fonts/OnestRegular1602-hint.woff';
 import OnestMedium from './assets/fonts/OnestMedium1602-hint.woff';
@@ -82,7 +82,7 @@ export const tokens = (mode: string) => ({
 });
 
 // mui theme settings
-export const themeSettings = (mode: string): any => {
+export const themeSettings = (mode: PaletteMode): ThemeOptions => {
   const colors = tokens(mode);
   return {
     palette: {
@@ -182,31 +182,7 @@ export const themeSettings = (mode: string): any => {
   };
 };
 
-interface ColorContextSchema {
-  toggleColorMode: () => void;
-}
-
 // context for color mode
-export const ColorModeContext: any = createContext({
+export const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
-
-export const useMode = () => {
-  const [mode, setMode] = useState<PaletteMode>('light');
-
-  const colorMode = useMemo(
-    () => ({
-      toggleColorMode: () =>
-        setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
-    }),
-    []
-  );
-
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-  return [theme, colorMode];
-};
-
-export interface ThemeModeContextType {
-    toggleThemeMode: () => void,
-    resetThemeMode: () => void
-};
