@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { PaletteMode } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Theme, ThemeOptions, createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { ColorModeContext, themeSettings } from './theme';
 import { Container, CssBaseline, ThemeProvider } from '@mui/material';
 import Clock from './views/global/Clock';
